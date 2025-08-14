@@ -48,47 +48,36 @@ button:hover {
 /* Resumen de reservas activas */
 #resumenReservas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
   margin-top: 15px;
 }
 
-/* Tarjeta de reserva */
 .reserva {
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* Hover de tarjeta */
-.reserva:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-weight: bold;
 }
 
 /* Reservas según tipo de habitación */
 .reserva.simple {
-  border-left: 5px solid #17a2b8; /* azul */
-  background-color: #d1ecf1;
+  background-color: #d1ecf1; /* azul claro */
   color: #0c5460;
 }
 
 .reserva.matrimonial {
-  border-left: 5px solid #e83e8c; /* rosa */
-  background-color: #f8d7da;
+  background-color: #f8d7da; /* rosa claro */
   color: #721c24;
 }
 
 /* Estado */
 .estadoReserva {
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-radius: 4px;
   display: inline-block;
-  margin-top: 6px;
-  font-size: 0.9rem;
 }
 
 .estadoReserva.Ocupada {
@@ -104,14 +93,29 @@ button:hover {
 /* Icono dentro de la tarjeta de reserva */
 .reserva .icono {
   font-size: 1.5rem; /* más grande */
-  margin-left: 8px;
+  margin-left: 8px;  /* un poco de espacio */
   vertical-align: middle;
 }
 
-/* Input y selects */
-#buscadorReservas, #filtroEstado, #filtroTipo {
-  padding: 6px 8px;
-  margin: 4px 4px 12px 0;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+/* Responsividad para móviles */
+@media (max-width: 600px) {
+  #habitaciones {
+    grid-template-columns: 1fr; /* Una columna por fila */
+    gap: 10px;
+  }
+
+  #resumenReservas {
+    grid-template-columns: 1fr; /* Una columna por fila */
+    gap: 8px;
+  }
+
+  .habitacion, .reserva {
+    font-size: 0.9rem; /* Texto más pequeño */
+    padding: 8px;      /* Menos padding */
+  }
+
+  button {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+  }
 }
