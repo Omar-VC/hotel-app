@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Hotel App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Hotel App</h1>
+  
+  <div style="display: flex; gap: 20px;">
+  <div style="flex: 1;">
+    <h2>Reservas activas</h2>
+    <input type="text" id="buscadorReservas" placeholder="Buscar por nombre o habitación">
+    <select id="filtroEstado">
+      <option value="">Todos los estados</option>
+      <option value="ocupada">Ocupada</option>
+      <option value="libre">Libre</option>
+    </select>
+    <select id="filtroTipo">
+      <option value="">Todos los tipos</option>
+      <option value="simple">Simple</option>
+      <option value="matrimonial">Matrimonial</option>
+    </select>
+    <div id="resumenReservas"></div>
+  </div>
+
+  <div style="width: 220px;">
+    <h2>Estadísticas</h2>
+    <div id="panelEstadisticas"></div>
+  </div>
+</div>
+
+
+  <div id="habitaciones"></div>
+
+  <h2>Agregar Reserva</h2>
+  <form id="reservaForm">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <select id="habitacion" required></select>
+    <input type="date" id="fecha" required>
+    <button type="submit">Reservar</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>

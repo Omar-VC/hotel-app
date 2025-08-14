@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+#habitaciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.habitacion {
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-weight: bold;
+}
+
+.habitacion.libre {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.habitacion.ocupada {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+button {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* Resumen de reservas activas */
+#resumenReservas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Tarjeta de reserva */
+.reserva {
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover de tarjeta */
+.reserva:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Reservas según tipo de habitación */
+.reserva.simple {
+  border-left: 5px solid #17a2b8; /* azul */
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.reserva.matrimonial {
+  border-left: 5px solid #e83e8c; /* rosa */
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Estado */
+.estadoReserva {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+.estadoReserva.Ocupada {
+  background-color: #dc3545; /* rojo */
+  color: white;
+}
+
+.estadoReserva.Libre {
+  background-color: #28a745; /* verde */
+  color: white;
+}
+
+/* Icono dentro de la tarjeta de reserva */
+.reserva .icono {
+  font-size: 1.5rem; /* más grande */
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Input y selects */
+#buscadorReservas, #filtroEstado, #filtroTipo {
+  padding: 6px 8px;
+  margin: 4px 4px 12px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

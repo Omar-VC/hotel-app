@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "tipo": "simple",
+    "estado": "libre"
+  },
+  {
+    "id": 2,
+    "tipo": "simple",
+    "estado": "libre"
+  },
+  {
+    "id": 3,
+    "tipo": "simple",
+    "estado": "libre"
+  },
+  {
+    "id": 4,
+    "tipo": "simple",
+    "estado": "libre"
+  },
+  {
+    "id": 5,
+    "tipo": "simple",
+    "estado": "libre"
+  },
+  {
+    "id": 6,
+    "tipo": "simple",
+    "estado": "libre"
+  },
+  {
+    "id": 7,
+    "tipo": "matrimonial",
+    "estado": "libre"
+  },
+  {
+    "id": 8,
+    "tipo": "matrimonial",
+    "estado": "libre"
+  },
+  {
+    "id": 9,
+    "tipo": "matrimonial",
+    "estado": "libre"
+  },
+  {
+    "id": 10,
+    "tipo": "matrimonial",
+    "estado": "libre"
+  },
+  {
+    "id": 11,
+    "tipo": "matrimonial",
+    "estado": "libre"
+  },
+  {
+    "id": 12,
+    "tipo": "matrimonial",
+    "estado": "libre"
+  }
+]
