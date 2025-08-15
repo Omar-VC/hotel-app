@@ -228,5 +228,10 @@
     "nombre": "noel",
     "habitacionId": 10,
     "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-15"
   }
 ]
