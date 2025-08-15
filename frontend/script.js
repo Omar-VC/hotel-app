@@ -7,6 +7,7 @@ const filtroEstado = document.getElementById("filtroEstado");
 const filtroTipo = document.getElementById("filtroTipo");
 const panelEstadisticas = document.getElementById("panelEstadisticas");
 
+// Cargar estadísticas
 function cargarEstadisticas() {
   fetch("/habitaciones")
     .then(res => res.json())
@@ -17,7 +18,6 @@ function cargarEstadisticas() {
       const simples = habitaciones.filter(h => h.tipo === "simple").length;
       const matrimoniales = habitaciones.filter(h => h.tipo === "matrimonial").length;
 
-       // Iconos
       const iconoLibre = "✅";
       const iconoOcupada = "❌";
       const iconoSimple = "🛏";
@@ -33,7 +33,7 @@ function cargarEstadisticas() {
     });
 }
 
-
+// Filtros de búsqueda
 function aplicarFiltros() {
   const textoFiltro = buscadorReservas.value.toLowerCase();
   const estadoFiltro = filtroEstado.value;
@@ -58,46 +58,29 @@ function aplicarFiltros() {
   });
 }
 
-// Escuchar cambios
+// Escuchar cambios en filtros
 buscadorReservas.addEventListener("input", aplicarFiltros);
 filtroEstado.addEventListener("change", aplicarFiltros);
 filtroTipo.addEventListener("change", aplicarFiltros);
 
-buscadorReservas.addEventListener("input", () => {
-  const filtro = buscadorReservas.value.toLowerCase();
-  const tarjetas = document.querySelectorAll("#resumenReservas .reserva");
-
-  tarjetas.forEach(tarjeta => {
-    const texto = tarjeta.textContent.toLowerCase();
-    if(texto.includes(filtro)) {
-      tarjeta.style.display = "block";
-    } else {
-      tarjeta.style.display = "none";
-    }
-  });
-});
-
-// Función para cargar habitaciones y mostrarlas
+// Cargar habitaciones
 function cargarHabitaciones() {
-  habitacionesDiv.innerHTML = ""; // limpiar antes de mostrar
-  habitacionSelect.innerHTML = ""; // limpiar select
+  habitacionesDiv.innerHTML = "";
+  habitacionSelect.innerHTML = "";
 
   fetch("/habitaciones")
     .then(res => res.json())
     .then(habitaciones => {
       habitaciones.forEach(h => {
         const div = document.createElement("div");
-        div.className = `habitacion ${h.estado}`; // clase CSS según estado
-
+        div.className = `habitacion ${h.estado}`;
         div.innerHTML = `
           #${h.id} - ${h.tipo} <br>
           Estado: ${h.estado}
           ${h.estado === "ocupada" ? `<button onclick="marcarSalida(${h.id})">Salida</button>` : ""}
         `;
-
         habitacionesDiv.appendChild(div);
 
-        // Llenar select solo con habitaciones libres
         if(h.estado === "libre") {
           const option = document.createElement("option");
           option.value = h.id;
@@ -106,15 +89,14 @@ function cargarHabitaciones() {
         }
       });
 
-      // Actualizar resumen al final
       cargarResumen();
       cargarEstadisticas();
     });
 }
 
-// Función para cargar resumen de reservas activas
+// Cargar resumen de reservas
 function cargarResumen() {
-  resumenDiv.innerHTML = ""; // limpiar antes de mostrar
+  resumenDiv.innerHTML = "";
   fetch("/reservas_activas")
     .then(res => res.json())
     .then(reservas => {
@@ -123,29 +105,25 @@ function cargarResumen() {
         return;
       }
 
-      // Cargar estado desde habitaciones para cada reserva
       fetch("/habitaciones")
         .then(res => res.json())
         .then(habitaciones => {
           reservas.forEach(r => {
             const hab = habitaciones.find(h => h.id === r.habitacionId);
             const estado = hab ? hab.estado : "libre";
-            const tipo = hab ? hab.tipo : "simple"; //default simple
-
-            // Elegir icono según tipo
+            const tipo = hab ? hab.tipo : "simple";
             const icono = tipo === "simple" ? "🛏" : "❤️";
 
             const div = document.createElement("div");
-            div.className = `reserva ${tipo}`; // clase según tipo de habitación
-
-             div.innerHTML = `
+            div.className = `reserva ${tipo}`;
+            div.innerHTML = `
               <p>#${r.habitacionId} - ${r.nombre} <span class="icono">${icono}</span></p>
-              <p>Fecha: ${r.fecha}</p>
+              <p>Fecha ingreso: ${r.fechaIngreso} ${r.horaIngreso}</p>
+              <p>Fecha salida: ${r.fechaSalida} ${r.horaSalida}</p>
+              <p>DNI: ${r.dni} | Cel: ${r.celular}</p>
               <p class="estadoReserva">${estado}</p>
-              `;
+            `;
 
-
-            // Asignar clase según estado
             const estadoClase = estado === "ocupada" ? "Ocupada" : "Libre";
             div.querySelector(".estadoReserva").classList.add(estadoClase);
 
@@ -155,7 +133,7 @@ function cargarResumen() {
     });
 }
 
-// Función para marcar Salida
+// Marcar salida
 function marcarSalida(id) {
   fetch(`/salida/${id}`, { method: "POST" })
     .then(res => res.json())
@@ -165,11 +143,25 @@ function marcarSalida(id) {
 // Enviar reserva
 reservaForm.addEventListener("submit", e => {
   e.preventDefault();
-  const reserva = {
-    nombre: document.getElementById("nombre").value,
-    habitacionId: parseInt(document.getElementById("habitacion").value),
-    fecha: document.getElementById("fecha").value
-  };
+
+  const nombre = document.getElementById("nombre").value;
+  const dni = document.getElementById("dni").value;
+  const celular = document.getElementById("celular").value;
+  const habitacionId = parseInt(document.getElementById("habitacion").value);
+  const fechaIngreso = document.getElementById("fechaIngreso").value;
+  const horaIngreso = document.getElementById("horaIngreso").value;
+  const fechaSalida = document.getElementById("fechaSalida").value;
+  const horaSalida = document.getElementById("horaSalida").value;
+
+  const ingreso = new Date(`${fechaIngreso}T${horaIngreso}`);
+  const salida = new Date(`${fechaSalida}T${horaSalida}`);
+
+  if (salida <= ingreso) {
+    alert("La fecha y hora de salida deben ser posteriores a la fecha y hora de ingreso");
+    return;
+  }
+
+  const reserva = { nombre, dni, celular, habitacionId, fechaIngreso, horaIngreso, fechaSalida, horaSalida };
 
   fetch("/reservas", {
     method: "POST",
@@ -180,11 +172,10 @@ reservaForm.addEventListener("submit", e => {
   .then(data => {
     alert(data.message);
 
-    // Cambiar automáticamente estado de la habitación a "ocupada"
     fetch("/habitaciones")
       .then(res => res.json())
       .then(habitaciones => {
-        const hab = habitaciones.find(h => h.id === reserva.habitacionId);
+        const hab = habitaciones.find(h => h.id === habitacionId);
         hab.estado = "ocupada";
         fetch("/habitaciones", {
           method: "POST",
@@ -195,5 +186,5 @@ reservaForm.addEventListener("submit", e => {
   });
 });
 
-// Cargar habitaciones al inicio
+// Inicializar
 cargarHabitaciones();

@@ -9,6 +9,14 @@
 <body>
   <h1>Hotel App</h1>
 
+  <!-- Menú flotante -->
+  <nav class="menu-flotante">
+    <button onclick="document.getElementById('bloqueReservas').scrollIntoView({behavior:'smooth'})">Reservas</button>
+    <button onclick="document.getElementById('bloqueEstadisticas').scrollIntoView({behavior:'smooth'})">Estadísticas</button>
+    <button onclick="document.getElementById('bloqueHabitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</button>
+    <button onclick="document.getElementById('bloqueFormulario').scrollIntoView({behavior:'smooth'})">Formulario</button>
+  </nav>
+
   <!-- Bloque Reservas -->
   <section class="bloque" id="bloqueReservas">
     <h2>Reservas activas</h2>
@@ -43,19 +51,16 @@
     <h2>Agregar Reserva</h2>
     <form id="reservaForm">
       <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="text" id="dni" placeholder="DNI" required>
+      <input type="text" id="celular" placeholder="Celular" required>
       <select id="habitacion" required></select>
-      <input type="date" id="fecha" required>
+      <input type="date" id="fechaIngreso" required>
+      <input type="time" id="horaIngreso" required>
+      <input type="date" id="fechaSalida" required>
+      <input type="time" id="horaSalida" required>
       <button type="submit">Reservar</button>
     </form>
   </section>
-
-  <!-- Menú flotante pie -->
-  <nav class="menu-flotante">
-    <button onclick="document.getElementById('bloqueReservas').scrollIntoView({behavior:'smooth'})">Reservas</button>
-    <button onclick="document.getElementById('bloqueEstadisticas').scrollIntoView({behavior:'smooth'})">Estadísticas</button>
-    <button onclick="document.getElementById('bloqueHabitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</button>
-    <button onclick="document.getElementById('bloqueFormulario').scrollIntoView({behavior:'smooth'})">Formulario</button>
-  </nav>
 
   <script src="script.js"></script>
 </body>

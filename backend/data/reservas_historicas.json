@@ -233,5 +233,24 @@
     "nombre": "Omar",
     "habitacionId": 1,
     "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Agustin",
+    "dni": "14567896",
+    "telefono": "3844475555",
+    "habitacionId": 1,
+    "fecha": "2025-08-15",
+    "horaIngreso": "15:00",
+    "horaSalida": "22:00"
+  },
+  {
+    "nombre": "agustin",
+    "dni": "14567896",
+    "celular": "3844434371",
+    "habitacionId": 1,
+    "fechaIngreso": "2025-08-14",
+    "horaIngreso": "15:00",
+    "fechaSalida": "2025-08-16",
+    "horaSalida": "14:00"
   }
 ]
