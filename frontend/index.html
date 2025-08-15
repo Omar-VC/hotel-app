@@ -8,39 +8,54 @@
 </head>
 <body>
   <h1>Hotel App</h1>
-  
-  <div class="flex-container">
-    <div class="flex-resumen">
-      <h2>Reservas activas</h2>
-      <input type="text" id="buscadorReservas" placeholder="Buscar por nombre o habitación">
-      <select id="filtroEstado">
-        <option value="">Todos los estados</option>
-        <option value="ocupada">Ocupada</option>
-        <option value="libre">Libre</option>
-      </select>
-      <select id="filtroTipo">
-        <option value="">Todos los tipos</option>
-        <option value="simple">Simple</option>
-        <option value="matrimonial">Matrimonial</option>
-      </select>
-      <div id="resumenReservas"></div>
-    </div>
 
-    <div class="flex-estadisticas">
-      <h2>Estadísticas</h2>
-      <div id="panelEstadisticas"></div>
-    </div>
-  </div>
+  <!-- Bloque Reservas -->
+  <section class="bloque" id="bloqueReservas">
+    <h2>Reservas activas</h2>
+    <input type="text" id="buscadorReservas" placeholder="Buscar por nombre o habitación">
+    <select id="filtroEstado">
+      <option value="">Todos los estados</option>
+      <option value="ocupada">Ocupada</option>
+      <option value="libre">Libre</option>
+    </select>
+    <select id="filtroTipo">
+      <option value="">Todos los tipos</option>
+      <option value="simple">Simple</option>
+      <option value="matrimonial">Matrimonial</option>
+    </select>
+    <div id="resumenReservas"></div>
+  </section>
 
-  <div id="habitaciones"></div>
+  <!-- Bloque Estadísticas -->
+  <section class="bloque" id="bloqueEstadisticas">
+    <h2>Estadísticas</h2>
+    <div id="panelEstadisticas"></div>
+  </section>
 
-  <h2>Agregar Reserva</h2>
-  <form id="reservaForm">
-    <input type="text" id="nombre" placeholder="Nombre" required>
-    <select id="habitacion" required></select>
-    <input type="date" id="fecha" required>
-    <button type="submit">Reservar</button>
-  </form>
+  <!-- Bloque Habitaciones -->
+  <section class="bloque" id="bloqueHabitaciones">
+    <h2>Habitaciones</h2>
+    <div id="habitaciones"></div>
+  </section>
+
+  <!-- Bloque Formulario -->
+  <section class="bloque" id="bloqueFormulario">
+    <h2>Agregar Reserva</h2>
+    <form id="reservaForm">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <select id="habitacion" required></select>
+      <input type="date" id="fecha" required>
+      <button type="submit">Reservar</button>
+    </form>
+  </section>
+
+  <!-- Menú flotante pie -->
+  <nav class="menu-flotante">
+    <button onclick="document.getElementById('bloqueReservas').scrollIntoView({behavior:'smooth'})">Reservas</button>
+    <button onclick="document.getElementById('bloqueEstadisticas').scrollIntoView({behavior:'smooth'})">Estadísticas</button>
+    <button onclick="document.getElementById('bloqueHabitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</button>
+    <button onclick="document.getElementById('bloqueFormulario').scrollIntoView({behavior:'smooth'})">Formulario</button>
+  </nav>
 
   <script src="script.js"></script>
 </body>

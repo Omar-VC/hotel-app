@@ -1,110 +1,44 @@
-/* Importar fuente desde Google Fonts */
+
+
+
+/* Fuente */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* Estilo general */
+/* General */
 body {
   font-family: 'Inter', Arial, sans-serif;
   background-color: #f5f5f5;
   margin: 0;
   padding: 10px;
   box-sizing: border-box;
+  padding-bottom: 80px; /* espacio suficiente para el menú inferior */
 }
 
 h1, h2 {
   text-align: center;
   font-weight: 700;
+  margin-bottom: 15px;
 }
 
-/* Flex layout para resumen y estadísticas */
-.flex-container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+/* Bloques verticales grandes */
+.bloque {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
   margin-bottom: 20px;
-}
-
-.flex-resumen {
-  flex: 1;
-  min-width: 280px;
-}
-
-.flex-estadisticas {
-  width: 220px;
-  min-width: 220px;
-  text-align: center;
-  background: #fff8dc;
-  padding: 10px;
-  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* Contenedor de habitaciones */
-#habitaciones {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-/* Tarjetas de habitaciones */
-.habitacion {
-  padding: 14px;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: 600;
-  background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-  color: #006064;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
-  opacity: 0; 
-  transform: scale(0.8);
-  animation: popIn 0.4s ease forwards;
-}
-
-.habitacion.libre {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.habitacion.ocupada {
-  background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
-  color: #b71c1c;
-}
-
-.habitacion:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
-
-/* Botones */
-button {
-  margin: 10px auto;
-  display: block;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  background: linear-gradient(135deg, #80deea, #26c6da);
-  color: #004d40;
-  transition: transform 0.15s, opacity 0.15s;
-}
-
-button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* Inputs y select */
+/* Inputs y select grandes */
 input, select {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 12px;
   border: 1px solid #b0bec5;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
   outline: none;
   transition: border-color 0.2s;
-  width: 100%;
-  margin-bottom: 10px;
 }
 
 input:focus, select:focus {
@@ -112,105 +46,128 @@ input:focus, select:focus {
   box-shadow: 0 0 6px rgba(38,198,218,0.4);
 }
 
-/* Resumen de reservas activas */
-#resumenReservas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-  margin-top: 15px;
+/* Botón centrado y grande */
+button[type="submit"] {
+  display: block;
+  margin: 10px auto;
+  padding: 14px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #80deea, #26c6da);
+  color: #004d40;
+  transition: transform 0.15s, opacity 0.15s;
 }
 
-/* Tarjetas de reservas */
-.reserva {
-  padding: 12px;
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Contenedor habitaciones */
+#habitaciones {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Tarjetas */
+.habitacion, .reserva {
+  padding: 16px;
   border-radius: 10px;
-  text-align: center;
   font-weight: 600;
-  background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
-  color: #01579b;
+  text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
-  opacity: 0; 
+  opacity: 0;
   transform: scale(0.8);
   animation: popIn 0.4s ease forwards;
 }
 
-.reserva.matrimonial {
-  background: linear-gradient(135deg, #ffe0e0, #ffb3b3);
-  color: #c62828;
-}
+.habitacion.libre { background-color: #d4edda; color: #155724; }
+.habitacion.ocupada { background-color: #ffcdd2; color: #b71c1c; }
 
-.reserva:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
+.reserva { background-color: #e1f5fe; color: #01579b; }
+.reserva.matrimonial { background-color: #ffe0e0; color: #c62828; }
 
-/* Estado de la reserva */
 .estadoReserva {
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 12px;
   display: inline-block;
 }
 
-.estadoReserva.Ocupada {
-  background-color: #dc3545; 
-  color: white;
-}
+.estadoReserva.Ocupada { background-color: #dc3545; color: white; }
+.estadoReserva.Libre { background-color: #28a745; color: white; }
 
-.estadoReserva.Libre {
-  background-color: #28a745;
-  color: white;
-}
-
-/* Iconos de habitaciones y reservas */
-.icono {
-  font-size: 2rem;
-  display: inline-block;
-  margin-bottom: 6px;
-  animation: parpadeo 1.2s infinite alternate;
-}
-
-/* Animación pop-in */
+/* Animaciones */
 @keyframes popIn {
   0% { transform: scale(0.8); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Animación simple de parpadeo */
+/* Iconos grandes */
+.icono {
+  font-size: 2.5rem;
+  display: block;
+  margin: 8px auto;
+  animation: parpadeo 1.2s infinite alternate;
+}
+
 @keyframes parpadeo {
   0% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.2); opacity: 1; }
   100% { transform: scale(1); opacity: 0.8; }
 }
 
-/* Responsividad móvil */
-@media (max-width: 600px) {
-  .flex-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .habitacion, .reserva {
-    width: 95%;
-    margin: 0 auto 12px auto;
-    font-size: 1.2rem;
-    padding: 16px;
-  }
-
-  .reserva .icono, .habitacion .icono {
-    font-size: 2.4rem;
-  }
-
-  button, input, select {
-    font-size: 1.2rem;
-    padding: 14px 16px;
-  }
+/* Estadísticas centradas */
+#panelEstadisticas {
+  text-align: center;
+  font-size: 1.1rem;
 }
 
-/* Delay escalonado de animación usando nth-child */
-.habitacion:nth-child(1), .reserva:nth-child(1) { animation-delay: 0s; }
-.habitacion:nth-child(2), .reserva:nth-child(2) { animation-delay: 0.05s; }
-.habitacion:nth-child(3), .reserva:nth-child(3) { animation-delay: 0.1s; }
-.habitacion:nth-child(4), .reserva:nth-child(4) { animation-delay: 0.15s; }
-.habitacion:nth-child(5), .reserva:nth-child(5) { animation-delay: 0.2s; }
+#panelEstadisticas p {
+  margin: 8px 0;
+}
+
+/* Menú flotante en el pie */
+.menu-flotante {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #ffffffdd;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.menu-flotante button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 12px 0;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #80deea, #26c6da);
+  color: #004d40;
+  font-weight: 600;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.menu-flotante button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Responsividad móvil */
+@media (max-width: 600px) {
+  .bloque { padding: 15px; }
+  input, select { font-size: 1.1rem; padding: 12px 14px; }
+  button[type="submit"] { font-size: 1.1rem; padding: 12px 18px; }
+  .icono { font-size: 2rem; }
+}
