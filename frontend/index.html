@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Hotel App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Hotel App</h1>
-
-  <main>
-    <!-- Sección de reservas activas -->
-    <div class="section">
+  
+  <div class="flex-container">
+    <div class="flex-resumen">
       <h2>Reservas activas</h2>
       <input type="text" id="buscadorReservas" placeholder="Buscar por nombre o habitación">
       <select id="filtroEstado">
@@ -26,29 +26,21 @@
       <div id="resumenReservas"></div>
     </div>
 
-    <!-- Sección de estadísticas -->
-    <div class="section">
+    <div class="flex-estadisticas">
       <h2>Estadísticas</h2>
       <div id="panelEstadisticas"></div>
     </div>
+  </div>
 
-    <!-- Sección de habitaciones -->
-    <div class="section">
-      <h2>Habitaciones disponibles</h2>
-      <div id="habitaciones"></div>
-    </div>
+  <div id="habitaciones"></div>
 
-    <!-- Sección de formulario de reservas -->
-    <div class="section">
-      <h2>Agregar Reserva</h2>
-      <form id="reservaForm">
-        <input type="text" id="nombre" placeholder="Nombre" required>
-        <select id="habitacion" required></select>
-        <input type="date" id="fecha" required>
-        <button type="submit">Reservar</button>
-      </form>
-    </div>
-  </main>
+  <h2>Agregar Reserva</h2>
+  <form id="reservaForm">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <select id="habitacion" required></select>
+    <input type="date" id="fecha" required>
+    <button type="submit">Reservar</button>
+  </form>
 
   <script src="script.js"></script>
 </body>
