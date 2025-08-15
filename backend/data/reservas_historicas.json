@@ -153,5 +153,80 @@
     "nombre": "Omar",
     "habitacionId": 1,
     "fecha": "2025-08-14"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-13"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-14"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 9,
+    "fecha": "2025-08-14"
+  },
+  {
+    "nombre": "omar ",
+    "habitacionId": 1,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-13"
+  },
+  {
+    "nombre": "omar",
+    "habitacionId": 10,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "Omar",
+    "habitacionId": 1,
+    "fecha": "2025-08-13"
+  },
+  {
+    "nombre": "omar ",
+    "habitacionId": 10,
+    "fecha": "2025-08-13"
+  },
+  {
+    "nombre": "carlos",
+    "habitacionId": 3,
+    "fecha": "2025-08-15"
+  },
+  {
+    "nombre": "vilma ",
+    "habitacionId": 8,
+    "fecha": "2025-08-14"
+  },
+  {
+    "nombre": "noel",
+    "habitacionId": 10,
+    "fecha": "2025-08-15"
   }
 ]

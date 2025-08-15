@@ -1,13 +1,19 @@
+/* Importar fuente desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Estilo general */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   background-color: #f5f5f5;
   margin: 20px;
 }
 
 h1, h2 {
   text-align: center;
+  font-weight: 700;
 }
 
+/* Contenedor de habitaciones */
 #habitaciones {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -15,34 +21,68 @@ h1, h2 {
   margin-top: 20px;
 }
 
+/* Tarjetas de habitaciones */
 .habitacion {
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  font-weight: bold;
+  font-weight: 600;
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+  color: #006064;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  opacity: 0; /* para animación */
+  transform: scale(0.8);
+  animation: popIn 0.4s ease forwards;
 }
 
+/* Estado de la habitación */
 .habitacion.libre {
   background-color: #d4edda;
   color: #155724;
 }
 
 .habitacion.ocupada {
-  background-color: #f8d7da;
-  color: #721c24;
+  background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
+  color: #b71c1c;
 }
 
+.habitacion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Botones */
 button {
   margin-top: 8px;
-  padding: 6px 12px;
+  padding: 10px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, #80deea, #26c6da);
+  color: #004d40;
+  transition: transform 0.15s, opacity 0.15s;
 }
 
 button:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Inputs y select */
+input, select {
+  border: 1px solid #b0bec5;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: #26c6da;
+  box-shadow: 0 0 6px rgba(38,198,218,0.4);
 }
 
 /* Resumen de reservas activas */
@@ -53,69 +93,93 @@ button:hover {
   margin-top: 15px;
 }
 
+/* Tarjetas de reservas */
 .reserva {
-  padding: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  font-weight: bold;
-}
-
-/* Reservas según tipo de habitación */
-.reserva.simple {
-  background-color: #d1ecf1; /* azul claro */
-  color: #0c5460;
+  font-weight: 600;
+  background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+  color: #01579b;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  opacity: 0; /* para animación */
+  transform: scale(0.8);
+  animation: popIn 0.4s ease forwards;
 }
 
 .reserva.matrimonial {
-  background-color: #f8d7da; /* rosa claro */
-  color: #721c24;
+  background: linear-gradient(135deg, #ffe0e0, #ffb3b3);
+  color: #c62828;
 }
 
-/* Estado */
+.reserva:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Estado de la reserva */
 .estadoReserva {
-  font-weight: bold;
-  padding: 3px 6px;
-  border-radius: 4px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
   display: inline-block;
 }
 
 .estadoReserva.Ocupada {
-  background-color: #dc3545; /* rojo */
+  background-color: #dc3545; 
   color: white;
 }
 
 .estadoReserva.Libre {
-  background-color: #28a745; /* verde */
+  background-color: #28a745;
   color: white;
 }
 
-/* Icono dentro de la tarjeta de reserva */
-.reserva .icono {
-  font-size: 1.5rem; /* más grande */
-  margin-left: 8px;  /* un poco de espacio */
-  vertical-align: middle;
+/* Iconos de habitaciones y reservas */
+.icono {
+  font-size: 2rem;
+  display: inline-block;
+  margin-bottom: 6px;
+  animation: parpadeo 1.2s infinite alternate;
 }
 
-/* Responsividad para móviles */
+/* Animación pop-in */
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Animación simple de parpadeo */
+@keyframes parpadeo {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Responsividad móvil */
 @media (max-width: 600px) {
-  #habitaciones {
-    grid-template-columns: 1fr; /* Una columna por fila */
-    gap: 10px;
-  }
-
-  #resumenReservas {
-    grid-template-columns: 1fr; /* Una columna por fila */
-    gap: 8px;
-  }
-
   .habitacion, .reserva {
-    font-size: 0.9rem; /* Texto más pequeño */
-    padding: 8px;      /* Menos padding */
+    width: 95%;
+    margin: 0 auto 12px auto;
+    font-size: 1.1rem;
+    padding: 16px;
   }
 
-  button {
-    padding: 5px 8px;
-    font-size: 0.9rem;
+  .reserva .icono, .habitacion .icono {
+    font-size: 2.2rem;
+  }
+
+  button, input, select {
+    padding: 14px 16px;
+    font-size: 1.1rem;
   }
 }
+
+/* Delay escalonado de animación usando nth-child */
+.habitacion:nth-child(1), .reserva:nth-child(1) { animation-delay: 0s; }
+.habitacion:nth-child(2), .reserva:nth-child(2) { animation-delay: 0.05s; }
+.habitacion:nth-child(3), .reserva:nth-child(3) { animation-delay: 0.1s; }
+.habitacion:nth-child(4), .reserva:nth-child(4) { animation-delay: 0.15s; }
+.habitacion:nth-child(5), .reserva:nth-child(5) { animation-delay: 0.2s; }
+/* y así sucesivamente, hasta el número máximo de tarjetas que esperás */
