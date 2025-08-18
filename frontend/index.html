@@ -7,17 +7,27 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hotel App</h1>
+<h1>Hotel App</h1>
 
-  <!-- Menú flotante -->
+<section id="bloqueLogin">
+  <h2>Iniciar sesión</h2>
+  <form id="loginForm">
+    <input type="email" id="usuario" placeholder="Correo electrónico" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <button type="submit">Ingresar</button>
+  </form>
+  <p id="loginError" style="color:red; display:none;">Usuario o contraseña incorrectos</p>
+</section>
+
+<div id="appContent" style="display:none;">
   <nav class="menu-flotante">
     <button onclick="document.getElementById('bloqueReservas').scrollIntoView({behavior:'smooth'})">Reservas</button>
     <button onclick="document.getElementById('bloqueEstadisticas').scrollIntoView({behavior:'smooth'})">Estadísticas</button>
     <button onclick="document.getElementById('bloqueHabitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</button>
     <button onclick="document.getElementById('bloqueFormulario').scrollIntoView({behavior:'smooth'})">Formulario</button>
+    <button id="logoutBtn">Cerrar sesión</button>
   </nav>
 
-  <!-- Bloque Reservas -->
   <section class="bloque" id="bloqueReservas">
     <h2>Reservas activas</h2>
     <input type="text" id="buscadorReservas" placeholder="Buscar por nombre o habitación">
@@ -34,19 +44,16 @@
     <div id="resumenReservas"></div>
   </section>
 
-  <!-- Bloque Estadísticas -->
   <section class="bloque" id="bloqueEstadisticas">
     <h2>Estadísticas</h2>
     <div id="panelEstadisticas"></div>
   </section>
 
-  <!-- Bloque Habitaciones -->
   <section class="bloque" id="bloqueHabitaciones">
     <h2>Habitaciones</h2>
     <div id="habitaciones"></div>
   </section>
 
-  <!-- Bloque Formulario -->
   <section class="bloque" id="bloqueFormulario">
     <h2>Agregar Reserva</h2>
     <form id="reservaForm">
@@ -61,7 +68,9 @@
       <button type="submit">Reservar</button>
     </form>
   </section>
+</div>
 
-  <script src="script.js"></script>
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>

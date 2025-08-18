@@ -4,7 +4,7 @@
 /* General */
 body {
   font-family: 'Inter', Arial, sans-serif;
-  background-color: #f5f5f5;
+  background: linear-gradient(180deg, #f3e5f5, #e1bee7);
   margin: 0;
   padding: 10px;
   box-sizing: border-box;
@@ -16,20 +16,20 @@ body {
   box-sizing: border-box;
 }
 
-
 h1, h2 {
   text-align: center;
   font-weight: 700;
   margin-bottom: 15px;
+  color: #4a148c;
 }
 
 /* Bloques */
 .bloque {
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(128,0,128,0.15);
 }
 
 /* Inputs y selects */
@@ -37,16 +37,16 @@ input, select {
   width: 100%;
   padding: 14px 16px;
   margin-bottom: 12px;
-  border: 1px solid #b0bec5;
-  border-radius: 10px;
-  font-size: 1.2rem;
+  border: 1px solid #b39ddb;
+  border-radius: 12px;
+  font-size: 1.1rem;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus, select:focus {
-  border-color: #26c6da;
-  box-shadow: 0 0 6px rgba(38,198,218,0.4);
+  border-color: #7b1fa2;
+  box-shadow: 0 0 8px rgba(123,31,162,0.4);
 }
 
 /* Inputs de tipo date y time */
@@ -62,16 +62,17 @@ button[type="submit"] {
   font-size: 1.2rem;
   font-weight: 600;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  background: linear-gradient(135deg, #80deea, #26c6da);
-  color: #004d40;
-  transition: transform 0.15s, opacity 0.15s;
+  background: linear-gradient(135deg, #ba68c8, #8e24aa);
+  color: #fff;
+  transition: transform 0.15s, opacity 0.15s, box-shadow 0.2s;
 }
 
 button[type="submit"]:hover {
   transform: translateY(-2px);
-  opacity: 0.9;
+  opacity: 0.95;
+  box-shadow: 0 4px 12px rgba(123,31,162,0.4);
 }
 
 /* Contenedor habitaciones */
@@ -84,20 +85,20 @@ button[type="submit"]:hover {
 /* Tarjetas */
 .habitacion, .reserva {
   padding: 16px;
-  border-radius: 10px;
+  border-radius: 15px;
   font-weight: 600;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(128,0,128,0.1);
   opacity: 0;
-  transform: scale(0.8);
+  transform: scale(0.85);
   animation: popIn 0.4s ease forwards;
 }
 
-.habitacion.libre { background-color: #d4edda; color: #155724; }
-.habitacion.ocupada { background-color: #ffcdd2; color: #b71c1c; }
+.habitacion.libre { background-color: #e8f5e9; color: #2e7d32; }
+.habitacion.ocupada { background-color: #ffebee; color: #c62828; }
 
-.reserva { background-color: #e1f5fe; color: #01579b; }
-.reserva.matrimonial { background-color: #ffe0e0; color: #c62828; }
+.reserva { background-color: #f3e5f5; color: #6a1b9a; }
+.reserva.matrimonial { background-color: #fce4ec; color: #ad1457; }
 
 .estadoReserva {
   font-weight: 700;
@@ -106,12 +107,12 @@ button[type="submit"]:hover {
   display: inline-block;
 }
 
-.estadoReserva.Ocupada { background-color: #dc3545; color: white; }
-.estadoReserva.Libre { background-color: #28a745; color: white; }
+.estadoReserva.Ocupada { background-color: #c62828; color: white; }
+.estadoReserva.Libre { background-color: #2e7d32; color: white; }
 
 /* Animaciones */
 @keyframes popIn {
-  0% { transform: scale(0.8); opacity: 0; }
+  0% { transform: scale(0.85); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
@@ -149,7 +150,7 @@ button[type="submit"]:hover {
   justify-content: space-around;
   padding: 10px 0;
   background-color: #ffffffdd;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 -2px 10px rgba(128,0,128,0.2);
   z-index: 1000;
 }
 
@@ -158,18 +159,19 @@ button[type="submit"]:hover {
   margin: 0 5px;
   padding: 12px 0;
   font-size: 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(135deg, #80deea, #26c6da);
-  color: #004d40;
+  background: linear-gradient(135deg, #ab47bc, #7b1fa2);
+  color: #fff;
   font-weight: 600;
-  transition: transform 0.15s, opacity 0.15s;
+  transition: transform 0.15s, opacity 0.15s, box-shadow 0.2s;
 }
 
 .menu-flotante button:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(123,31,162,0.4);
 }
 
 /* Ajustes móviles */
