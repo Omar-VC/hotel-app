@@ -1,7 +1,9 @@
+// script.js
 import { auth, db } from './firebase-config.js';
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.15.0/firebase-auth.js";
-import { collection, getDocs, addDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.15.0/firebase-firestore.js";
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { collection, getDocs, addDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
+// ----- LOGIN -----
 const loginForm = document.getElementById("loginForm");
 const bloqueLogin = document.getElementById("bloqueLogin");
 const appContent = document.getElementById("appContent");
@@ -31,8 +33,9 @@ logoutBtn.addEventListener("click", () => {
 });
 
 onAuthStateChanged(auth, user => {
-  if (user) mostrarApp();
-  else {
+  if (user) {
+    mostrarApp();
+  } else {
     bloqueLogin.style.display = "block";
     appContent.style.display = "none";
   }
@@ -44,6 +47,7 @@ function mostrarApp() {
   cargarHabitaciones();
 }
 
+// ----- VARIABLES DOM -----
 const habitacionesDiv = document.getElementById("habitaciones");
 const habitacionSelect = document.getElementById("habitacion");
 const reservaForm = document.getElementById("reservaForm");
@@ -53,6 +57,7 @@ const filtroEstado = document.getElementById("filtroEstado");
 const filtroTipo = document.getElementById("filtroTipo");
 const panelEstadisticas = document.getElementById("panelEstadisticas");
 
+// ----- FUNCIONES FIRESTORE -----
 async function getHabitaciones() {
   const snapshot = await getDocs(collection(db, "habitaciones"));
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -72,10 +77,10 @@ async function marcarSalidaFirestore(id, habitacionId) {
   await updateDoc(doc(db, "habitaciones", habitacionId), { estado: "libre" });
 }
 
+// ----- CARGAR HABITACIONES -----
 async function cargarHabitaciones() {
   habitacionesDiv.innerHTML = "";
   habitacionSelect.innerHTML = "";
-
   const habitaciones = await getHabitaciones();
 
   habitaciones.forEach(h => {
@@ -84,7 +89,7 @@ async function cargarHabitaciones() {
     div.innerHTML = `
       #${h.id} - ${h.tipo} <br>
       Estado: ${h.estado}
-      ${h.estado === "ocupada" ? `<button onclick="marcarSalidaFirestore('${h.id}','${h.id}').then(cargarHabitaciones)">Salida</button>` : ""}
+      ${h.estado === "ocupada" ? `<button onclick="marcarSalidaFirestore('${h.id}', '${h.id}').then(cargarHabitaciones)">Salida</button>` : ""}
     `;
     habitacionesDiv.appendChild(div);
 
@@ -100,6 +105,7 @@ async function cargarHabitaciones() {
   cargarEstadisticas();
 }
 
+// ----- CARGAR RESUMEN Y ESTADÍSTICAS -----
 async function cargarResumen() {
   resumenDiv.innerHTML = "";
   const reservas = await getReservas();
@@ -120,15 +126,13 @@ async function cargarResumen() {
     div.className = `reserva ${tipo}`;
     div.innerHTML = `
       <p>#${r.habitacionId} - ${r.nombre} <span class="icono">${icono}</span></p>
-      <p>Ingreso: ${r.fechaIngreso} ${r.horaIngreso}</p>
-      <p>Salida: ${r.fechaSalida} ${r.horaSalida}</p>
+      <p>Fecha ingreso: ${r.fechaIngreso} ${r.horaIngreso}</p>
+      <p>Fecha salida: ${r.fechaSalida} ${r.horaSalida}</p>
       <p>DNI: ${r.dni} | Cel: ${r.celular}</p>
       <p class="estadoReserva">${estado}</p>
     `;
-
     const estadoClase = estado === "ocupada" ? "Ocupada" : "Libre";
     div.querySelector(".estadoReserva").classList.add(estadoClase);
-
     resumenDiv.appendChild(div);
   });
 
@@ -152,13 +156,13 @@ async function cargarEstadisticas() {
   `;
 }
 
+// ----- FILTROS -----
 function aplicarFiltros() {
   const textoFiltro = buscadorReservas.value.toLowerCase();
   const estadoFiltro = filtroEstado.value;
   const tipoFiltro = filtroTipo.value;
 
   const tarjetas = document.querySelectorAll("#resumenReservas .reserva");
-
   tarjetas.forEach(tarjeta => {
     const texto = tarjeta.textContent.toLowerCase();
     const estado = tarjeta.querySelector(".estadoReserva").textContent.toLowerCase();
@@ -168,7 +172,8 @@ function aplicarFiltros() {
       texto.includes(textoFiltro) &&
       (estadoFiltro === "" || estado === estadoFiltro) &&
       (tipoFiltro === "" || tipo === tipoFiltro)
-      ? "block" : "none";
+        ? "block"
+        : "none";
   });
 }
 
@@ -178,7 +183,6 @@ filtroTipo.addEventListener("change", aplicarFiltros);
 
 reservaForm.addEventListener("submit", async e => {
   e.preventDefault();
-
   const nombre = document.getElementById("nombre").value;
   const dni = document.getElementById("dni").value;
   const celular = document.getElementById("celular").value;
@@ -188,10 +192,7 @@ reservaForm.addEventListener("submit", async e => {
   const fechaSalida = document.getElementById("fechaSalida").value;
   const horaSalida = document.getElementById("horaSalida").value;
 
-  const ingreso = new Date(`${fechaIngreso}T${horaIngreso}`);
-  const salida = new Date(`${fechaSalida}T${horaSalida}`);
-
-  if (salida <= ingreso) {
+  if (new Date(`${fechaSalida}T${horaSalida}`) <= new Date(`${fechaIngreso}T${horaIngreso}`)) {
     alert("La fecha y hora de salida deben ser posteriores a la fecha y hora de ingreso");
     return;
   }
@@ -202,4 +203,5 @@ reservaForm.addEventListener("submit", async e => {
   cargarHabitaciones();
 });
 
+// ----- INICIAL -----
 cargarHabitaciones();
